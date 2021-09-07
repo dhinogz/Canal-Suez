@@ -3,12 +3,14 @@
 #include <vector>
 #include <algorithm>
 #include <fstream>
+
 using std::cin;
 using std::cout;
 using std::vector;
 using std::string;
 using std::ifstream;
 using std::sort;
+
 #include "DateConverter.h"
 
 struct registro
