@@ -70,7 +70,7 @@ string ubiToStart(string ubi)
 int main()
 {
 	struct registro DataSuez;
-	vector<registro> mivec;
+	vector<registro> registroVec;
 	int comparisons = 0;
 
 	ifstream dataSuez("suez.txt");
@@ -78,26 +78,26 @@ int main()
 	{
 		DataSuez.fechaInt = dateToInt(DataSuez.fecha);
 		DataSuez.ubiStr = ubiToStart(DataSuez.ubi);
-		mivec.push_back(DataSuez);
+		registroVec.push_back(DataSuez);
 	}
 	dataSuez.close();
 
-	//printVector(mivec);
+	//printVector(registroVec);
 
-	sortByUbi(mivec, comparisons);
+	sortByUbi(registroVec, comparisons);
 	cout << "Number of comparisons: " << comparisons << "\n";
 	cout << "Sorted vector\n";
-	//printVector(mivec);
+	//printVector(registroVec);
 
 	string ubiUsuario;
 	cout << "Seleccionar un UBI: ";
 	cin >> ubiUsuario;
 	vector<registro> eleccion;
-	for(int i = 0; i < mivec.size(); i++)
+	for(int i = 0; i < registroVec.size(); i++)
 	{
-		if(mivec[i].ubiStr == ubiUsuario)
+		if(registroVec[i].ubiStr == ubiUsuario)
 		{
-			eleccion.push_back(mivec[i]);
+			eleccion.push_back(registroVec[i]);
 		}
 	}
 	cout << "Ubi seleccionado: " << ubiUsuario << "\n";
