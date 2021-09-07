@@ -35,22 +35,22 @@ void printVector(vector<registro> vec)
 	cout << "\n";
 }
 
-void sortByUbi(vector<registro> &Data, int &numComp)
+void sortByUbi(vector<registro> &data, int &numComp)
 {
-	for(int i = 0; i < Data.size() - 1; i++)
+	for(int i = 0; i < data.size() - 1; i++)
 	{
-		for (int j = i + 1; j < Data.size(); j++)
+		for (int j = i + 1; j < data.size(); j++)
 		{
 			numComp++;
-			if (Data[i].ubiStr > Data[j].ubiStr)
+			if (data[i].ubiStr > data[j].ubiStr)
 			{
-				std::swap(Data[i], Data[j]);
+				std::swap(data[i], data[j]);
 			}
-			else if (Data[i].ubiStr == Data[j].ubiStr)
+			else if (data[i].ubiStr == data[j].ubiStr)
 			{
-				if (Data[i].fechaInt > Data[j].fechaInt)
+				if (data[i].fechaInt > data[j].fechaInt)
 				{
-					std::swap(Data[i], Data[j]);
+					std::swap(data[i], data[j]);
 				}
 			}
 		}
