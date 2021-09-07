@@ -79,5 +79,4 @@ int dateToInt(string date)
 	}
 	salida += (temp * 10000);
 	return salida;
-
 }

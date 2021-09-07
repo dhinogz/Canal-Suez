@@ -8,90 +8,8 @@ using std::cout;
 using std::vector;
 using std::string;
 using std::ifstream;
-
-int monthToInt(string month)
-{
-	if (month == "jan")
-	{
-		return 1;
-	}
-	else if (month == "feb")
-	{
-		return 2;
-	}
-	else if (month == "mar")
-	{
-		return 3;
-	}
-	else if (month == "apr")
-	{
-		return 4;
-	}
-	else if (month == "may")
-	{
-		return 5;
-	}
-	else if (month == "jun")
-	{
-		return 6;
-	}
-	else if (month == "jul")
-	{
-		return 7;
-	}
-	else if (month == "aug")
-	{
-		return 8;
-	}
-	else if (month == "sep")
-	{
-		return 9;
-	}
-	else if (month == "oct")
-	{
-		return 10;
-	}
-	else if (month == "nov")
-	{
-		return 11;
-	}
-	return 12;
-}
-
-int dateToInt(string date)
-{
-	int salida = 0;
-	int temp = 0;
-	int i = 0;
-	while(date[i] != '-')
-	{
-		temp *= 10;
-		temp += (date[i] - '0');
-		i++;
-	}
-	salida += temp;
-	i++;
-
-	string month;
-	while (date[i] != '-')
-	{
-		month += date[i];
-		i++;
-	}
-	salida += monthToInt(month) * 100;
-	i++;
-
-	temp = 0;
-	while(i < date.length())
-	{
-		temp *= 10;
-		temp += (date[i] - '0');
-		i++;
-	}
-	salida += (temp * 10000);
-	return salida;
-
-}
+using std::sort;
+#include "DateConverter.h"
 
 struct registro
 {
@@ -100,7 +18,7 @@ struct registro
 	char entrada;
 	string ubi;
 	int fechaInt;
-	int ubiInt;
+	string ubiStr;
 };
 
 void printVector(vector<registro> vec)
@@ -112,23 +30,9 @@ void printVector(vector<registro> vec)
 		cout << vec[i].entrada << " ";
 		cout << vec[i].ubi << " ";
 		cout << vec[i].fechaInt << " ";
-		cout << vec[i].ubiInt << "\n";
+		cout << vec[i].ubiStr << "\n";
 	}
 	cout << "\n";
-}
-
-void whereIsSameDate(vector<registro> Data)
-{
-	for(int i = 0; i < Data.size() - 1; i++)
-	{
-		for (int j = i + 1; j < Data.size(); j++)
-		{
-			if (Data[i].ubi == Data[j].ubi)
-			{
-				cout << i << " " << j << "\n";
-			}
-		}
-	}
 }
 
 void sortByUbi(vector<registro> &Data, int &numComp)
@@ -138,11 +42,11 @@ void sortByUbi(vector<registro> &Data, int &numComp)
 		for (int j = i + 1; j < Data.size(); j++)
 		{
 			numComp++;
-			if (Data[i].ubi > Data[j].ubi)
+			if (Data[i].ubiStr > Data[j].ubiStr)
 			{
 				std::swap(Data[i], Data[j]);
 			}
-			else if (Data[i].ubi == Data[j].ubi)
+			else if (Data[i].ubiStr == Data[j].ubiStr)
 			{
 				if (Data[i].fechaInt > Data[j].fechaInt)
 				{
@@ -153,21 +57,14 @@ void sortByUbi(vector<registro> &Data, int &numComp)
 	}
 }
 
-
-int ubiToInt(string ubi)
+string ubiToStart(string ubi)
 {
-	string ubiLast = " ";
-	int result = 0;
-	for (int i = 3; i < ubi.length(); i++)
+	string ubiStart;
+	for (int i = 0; i < 3; i++)
 	{
-		cout << ubi[i] << " ";
-		ubiLast += ubi[i];
+		ubiStart += ubi[i];
 	}
-	cout << "\n";
-	result += ubiLast[0] * 10;
-	result += ubiLast[1];
-	cout << result << "\n";
-	return result;
+	return ubiStart;
 }
 
 int main()
@@ -176,21 +73,36 @@ int main()
 	vector<registro> mivec;
 	int comparisons = 0;
 
-	ifstream dataSuez("suez1.txt");
+	ifstream dataSuez("suez.txt");
 	while(dataSuez >> DataSuez.fecha >> DataSuez.hora >> DataSuez.entrada >> DataSuez.ubi)
 	{
 		DataSuez.fechaInt = dateToInt(DataSuez.fecha);
-		DataSuez.ubiInt = ubiToInt(DataSuez.ubi);
+		DataSuez.ubiStr = ubiToStart(DataSuez.ubi);
 		mivec.push_back(DataSuez);
 	}
 	dataSuez.close();
 
-	printVector(mivec);
+	//printVector(mivec);
 
 	sortByUbi(mivec, comparisons);
 	cout << "Number of comparisons: " << comparisons << "\n";
 	cout << "Sorted vector\n";
-	printVector(mivec);
+	//printVector(mivec);
+
+	string ubiUsuario;
+	cout << "Seleccionar un UBI: ";
+	cin >> ubiUsuario;
+	vector<registro> eleccion;
+	for(int i = 0; i < mivec.size(); i++)
+	{
+		if(mivec[i].ubiStr == ubiUsuario)
+		{
+			eleccion.push_back(mivec[i]);
+		}
+	}
+	cout << "Ubi seleccionado: " << ubiUsuario << "\n";
+
+	printVector(eleccion);
 
 	return 0;
 }
