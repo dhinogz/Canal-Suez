@@ -44,16 +44,6 @@ string ubiToStart(string ubi)
 	return ubiStart;
 }
 
-string StrToUpper(string &StrToConvert)
-{
-	string UpperStr;
-	for (int i = 0; StrToConvert.length(); i++)
-	{
-		UpperStr[i] = toupper(StrToConvert[i]);
-	}
-	return UpperStr;
-}
-
 void str_toupper(std::string &s) 
 {
     std::transform(
