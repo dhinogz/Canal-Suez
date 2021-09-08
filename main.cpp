@@ -33,7 +33,7 @@ int main()
 	vector<registro> registroVec;
 	int comparisons = 0;
 
-	ifstream dataSuez("suez.txt");
+	ifstream dataSuez("suez1.txt");
 	while(dataSuez >> DataSuez.fecha >> DataSuez.hora >> DataSuez.entrada >> DataSuez.ubi)
 	{
 		DataSuez.fechaInt = dateToInt(DataSuez.fecha);
@@ -42,12 +42,13 @@ int main()
 	}
 	dataSuez.close();
 
-	//printVector(registroVec);
+	printVector(registroVec);
 
-	sortByUbi(registroVec, comparisons);
+	quickSort(registroVec, 0, registroVec.size() - 1, comparisons);
+	//sortByUbi(registroVec, comparisons);
 	cout << "Number of comparisons: " << comparisons << "\n";
 	cout << "Sorted vector\n";
-	//printVector(registroVec);
+	printVector(registroVec);
 
 	string ubiUsuario;
 	cout << "Seleccionar un UBI: ";

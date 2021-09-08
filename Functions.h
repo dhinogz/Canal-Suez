@@ -51,3 +51,41 @@ void str_toupper(std::string &s)
 		[](unsigned char c){ return std::toupper(c); }
 	);
 }
+
+int partition(vector<registro> &vec, int low, int high)
+{
+	int mid = (low + high) / 2;
+	string pivot = vec[mid].ubiStr;
+	int i = (low - 1);
+
+	for (int j = low; j <= high - 1; j++)
+	{
+		if (vec[j].ubiStr < pivot)
+		{
+			i++;
+			std::swap(vec[i], vec[j]);
+		}
+		else if (vec[j].ubiStr == pivot)
+		{
+			if (vec[i].fechaInt > vec[mid].fechaInt)
+			{
+				i++;
+				std::swap(vec[i], vec[j]);
+			}
+		}
+	}
+	std::swap(vec[i + 1], vec[high]);
+	return (i + 1);
+}
+
+void quickSort(vector<registro> &vec, int low, int high, int &numComp)
+{
+	if (low < high)
+	{
+		numComp++;
+		int pi = partition(vec, low, high);
+
+		quickSort(vec, low, pi - 1, numComp);
+		quickSort(vec, pi + 1, high, numComp);
+	}
+}
