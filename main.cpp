@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <fstream>
+#include <cctype>
 
 using std::cin;
 using std::cout;
@@ -10,6 +11,8 @@ using std::vector;
 using std::string;
 using std::ifstream;
 using std::sort;
+using std::toupper;
+using std::transform;
 
 struct registro
 {
@@ -49,6 +52,7 @@ int main()
 	string ubiUsuario;
 	cout << "Seleccionar un UBI: ";
 	cin >> ubiUsuario;
+	str_toupper(ubiUsuario);
 	vector<registro> eleccion;
 	for(int i = 0; i < registroVec.size(); i++)
 	{
