@@ -65,6 +65,6 @@ void selectUbi(vector<record> vec, string ubiSelect)
 			eleccion.push_back(vec[i]);
 		}
 	}
-	cout << "Ubi seleccionado: " << ubiSelect << "\n";
+	cout << "UBI seleccionado: " << ubiSelect << "\n";
 	printVector(eleccion);
 }
