@@ -42,7 +42,10 @@ int main()
 	printVector(recordVec);
 
 	// le pedimos al usuario que Ubi quiere ver y los imprimimos 
-	selectUbi(recordVec);
+	string ubiUsuario;
+	cout << "Seleccionar un UBI: ";
+	cin >> ubiUsuario;
+	selectUbi(recordVec, ubiUsuario);
 
 	return 0;
 }

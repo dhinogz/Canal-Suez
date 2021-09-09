@@ -54,20 +54,17 @@ bool compare(record lhs, record rhs)
 }
 
 // le pide al usuario un ubi para luego desplegar todas las opciones
-void selectUbi(vector<record> vec)
+void selectUbi(vector<record> vec, string ubiSelect)
 {
-	string ubiUsuario;
-	cout << "Seleccionar un UBI: ";
-	cin >> ubiUsuario;
-	str_toupper(ubiUsuario);
+	str_toupper(ubiSelect);
 	vector<record> eleccion;
 	for(int i = 0; i < vec.size(); i++)
 	{
-		if(vec[i].ubiStr == ubiUsuario)
+		if(vec[i].ubiStr == ubiSelect)
 		{
 			eleccion.push_back(vec[i]);
 		}
 	}
-	cout << "Ubi seleccionado: " << ubiUsuario << "\n";
+	cout << "Ubi seleccionado: " << ubiSelect << "\n";
 	printVector(eleccion);
 }
