@@ -1,37 +1,13 @@
-void printVector(vector<registro> vec)
+void printVector(vector<record> vec)
 {
 	for(int i = 0; i < vec.size(); i++)
 	{
 		cout << vec[i].fecha << " ";
 		cout << vec[i].hora << " ";
 		cout << vec[i].entrada << " ";
-		cout << vec[i].ubi << " ";
-		cout << vec[i].fechaInt << " ";
-		cout << vec[i].ubiStr << "\n";
+		cout << vec[i].ubi << "\n";
 	}
 	cout << "\n";
-}
-
-void sortByUbi(vector<registro> &data, int &numComp)
-{
-	for(int i = 0; i < data.size() - 1; i++)
-	{
-		for (int j = i + 1; j < data.size(); j++)
-		{
-			numComp++;
-			if (data[i].ubiStr > data[j].ubiStr)
-			{
-				std::swap(data[i], data[j]);
-			}
-			else if (data[i].ubiStr == data[j].ubiStr)
-			{
-				if (data[i].fechaInt > data[j].fechaInt)
-				{
-					std::swap(data[i], data[j]);
-				}
-			}
-		}
-	}
 }
 
 string ubiToStart(string ubi)
@@ -44,48 +20,48 @@ string ubiToStart(string ubi)
 	return ubiStart;
 }
 
-void str_toupper(std::string &s) 
+void str_toupper(string &s) 
 {
-    std::transform(
+    transform(
 		s.begin(), s.end(), s.begin(), 
 		[](unsigned char c){ return std::toupper(c); }
 	);
 }
 
-int partition(vector<registro> &vec, int low, int high)
+bool compare(record lhs, record rhs)
 {
-	int mid = (low + high) / 2;
-	string pivot = vec[mid].ubiStr;
-	int i = (low - 1);
-
-	for (int j = low; j <= high - 1; j++)
-	{
-		if (vec[j].ubiStr < pivot)
-		{
-			i++;
-			std::swap(vec[i], vec[j]);
-		}
-		else if (vec[j].ubiStr == pivot)
-		{
-			if (vec[i].fechaInt > vec[mid].fechaInt)
-			{
-				i++;
-				std::swap(vec[i], vec[j]);
-			}
-		}
-	}
-	std::swap(vec[i + 1], vec[high]);
-	return (i + 1);
+    if (lhs.ubiStr == rhs.ubiStr){
+        return lhs.fechaInt < rhs.fechaInt;
+    }
+    return (lhs.ubi.compare(rhs.ubi) < 0);
 }
 
-void quickSort(vector<registro> &vec, int low, int high, int &numComp)
+void selectUbi(vector<record> vec)
 {
-	if (low < high)
+	string ubiUsuario;
+	cout << "Seleccionar un UBI: ";
+	cin >> ubiUsuario;
+	str_toupper(ubiUsuario);
+	vector<record> eleccion;
+	for(int i = 0; i < vec.size(); i++)
 	{
-		numComp++;
-		int pi = partition(vec, low, high);
-
-		quickSort(vec, low, pi - 1, numComp);
-		quickSort(vec, pi + 1, high, numComp);
+		if(vec[i].ubiStr == ubiUsuario)
+		{
+			eleccion.push_back(vec[i]);
+		}
 	}
+	cout << "Ubi seleccionado: " << ubiUsuario << "\n";
+	printVector(eleccion);
+}
+
+void loadData(record &DataLoaded, vector<record> &vec)
+{
+	ifstream dataSuez("suez.txt");
+	while(dataSuez >> DataLoaded.fecha >> DataLoaded.hora >> DataLoaded.entrada >> DataLoaded.ubi)
+	{
+		DataLoaded.fechaInt = dateToInt(DataLoaded.fecha);
+		DataLoaded.ubiStr = ubiToStart(DataLoaded.ubi);
+		vec.push_back(DataLoaded);
+	}
+	dataSuez.close();
 }
