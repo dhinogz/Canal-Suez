@@ -11,17 +11,6 @@ void printVector(vector<record> vec)
 	cout << "\n";
 }
 
-// regresa un string con los primeros tres caracteres del ubi
-string ubiToStart(string ubi)
-{
-	string ubiStart;
-	for (int i = 0; i < 3; i++)
-	{
-		ubiStart += ubi[i];
-	}
-	return ubiStart;
-}
-
 // cargar datos de un archivo texto y guardar en un vector de la estructura record
 void loadData(record &dataLoaded, vector<record> &vec, string txtFile)
 {
@@ -29,7 +18,7 @@ void loadData(record &dataLoaded, vector<record> &vec, string txtFile)
 	while(dataSuez >> dataLoaded.fecha >> dataLoaded.hora >> dataLoaded.entrada >> dataLoaded.ubi)
 	{
 		dataLoaded.fechaInt = dateToInt(dataLoaded.fecha);
-		dataLoaded.ubiStr = ubiToStart(dataLoaded.ubi);
+		dataLoaded.ubiStr = dataLoaded.ubi.substr(0, 3);
 		vec.push_back(dataLoaded);
 	}
 	dataSuez.close();
@@ -67,4 +56,27 @@ void selectUbi(vector<record> vec, string ubiSelect)
 	}
 	cout << "UBI seleccionado: " << ubiSelect << "\n";
 	printVector(eleccion);
+}
+
+void selectUbiBin(vector<record> vec, string ubiSelect)
+{
+	vector<string> ubiStr;
+	for (int i = 0; i < vec.size(); i++)
+	{
+		ubiStr.push_back(vec[i].ubiStr);
+	}
+	vector<string>::iterator low = lower_bound(ubiStr.begin(), ubiStr.end(), ubiSelect); 
+	vector<string>::iterator up = upper_bound(ubiStr.begin(), ubiStr.end(), ubiSelect); 
+	int pos = low - ubiStr.begin();
+	if(ubiStr[pos] == ubiSelect)
+	{
+		cout << "Se encontro \n";
+	}
+	else
+	{
+		cout << "No se encontro\n";
+	}
+
+	std::cout << "lower_bound at position " << (low - ubiStr.begin()) << '\n';
+	std::cout << "upper_bound at position " << (up - ubiStr.begin()) << '\n';
 }

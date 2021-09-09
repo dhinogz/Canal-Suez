@@ -46,6 +46,7 @@ int main()
 	cout << "Seleccionar un UBI: ";
 	cin >> ubiUsuario;
 	selectUbi(recordVec, ubiUsuario);
+	// selectUbiBin(recordVec, ubiUsuario);
 
 	return 0;
 }
