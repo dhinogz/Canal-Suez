@@ -40,7 +40,7 @@ void str_toupper(string &s)
 {
     transform(
 		s.begin(), s.end(), s.begin(), 
-		[](unsigned char c){ return std::toupper(c); }
+		[](unsigned char c){ return toupper(c); }
 	);
 }
 
