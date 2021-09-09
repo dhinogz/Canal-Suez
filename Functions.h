@@ -1,3 +1,4 @@
+// imrime el vector del tipo de dato record
 void printVector(vector<record> vec)
 {
 	for(int i = 0; i < vec.size(); i++)
@@ -10,6 +11,20 @@ void printVector(vector<record> vec)
 	cout << "\n";
 }
 
+// cargar datos de un archivo texto y guardar en un vector de la estructura record
+void loadData(record &dataLoaded, vector<record> &vec, string txtFile)
+{
+	ifstream dataSuez(txtFile);
+	while(dataSuez >> dataLoaded.fecha >> dataLoaded.hora >> dataLoaded.entrada >> dataLoaded.ubi)
+	{
+		dataLoaded.fechaInt = dateToInt(dataLoaded.fecha);
+		dataLoaded.ubiStr = ubiToStart(dataLoaded.ubi);
+		vec.push_back(dataLoaded);
+	}
+	dataSuez.close();
+}
+
+// regresa un string con los primeros tres caracteres del ubi
 string ubiToStart(string ubi)
 {
 	string ubiStart;
@@ -20,6 +35,7 @@ string ubiToStart(string ubi)
 	return ubiStart;
 }
 
+// string a mayuscula se usa al pedir la entrada del ubi del usuario
 void str_toupper(string &s) 
 {
     transform(
@@ -28,6 +44,7 @@ void str_toupper(string &s)
 	);
 }
 
+// condicion de ordenamiento
 bool compare(record lhs, record rhs)
 {
     if (lhs.ubiStr == rhs.ubiStr){
@@ -36,6 +53,7 @@ bool compare(record lhs, record rhs)
     return (lhs.ubi.compare(rhs.ubi) < 0);
 }
 
+// le pide al usuario un ubi para luego desplegar todas las opciones
 void selectUbi(vector<record> vec)
 {
 	string ubiUsuario;
@@ -52,16 +70,4 @@ void selectUbi(vector<record> vec)
 	}
 	cout << "Ubi seleccionado: " << ubiUsuario << "\n";
 	printVector(eleccion);
-}
-
-void loadData(record &DataLoaded, vector<record> &vec)
-{
-	ifstream dataSuez("suez.txt");
-	while(dataSuez >> DataLoaded.fecha >> DataLoaded.hora >> DataLoaded.entrada >> DataLoaded.ubi)
-	{
-		DataLoaded.fechaInt = dateToInt(DataLoaded.fecha);
-		DataLoaded.ubiStr = ubiToStart(DataLoaded.ubi);
-		vec.push_back(DataLoaded);
-	}
-	dataSuez.close();
 }

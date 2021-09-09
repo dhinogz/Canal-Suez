@@ -32,9 +32,10 @@ int main()
 	// declaramos el struct de registro junto con un vector
 	struct record dataSuez;
 	vector<record> registroVec;
+	string txtFile = "suez.txt";
 
 	// cargamos los datos
-	loadData(dataSuez, registroVec);
+	loadData(dataSuez, registroVec, txtFile);
 
 	// ordenamos datos dependiendo de los primeros tres caracteres del UBI
 	// si es el mismo ubi, se ordena por fecha
