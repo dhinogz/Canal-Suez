@@ -1,3 +1,10 @@
+string inputTxtFile()
+{
+	string txtFile;
+	cin >> txtFile;
+	return txtFile;
+}
+
 // imrime el vector del tipo de dato record
 void printVector(vector<record> vec)
 {

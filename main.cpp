@@ -25,7 +25,11 @@ int main()
 	// declaramos el struct de registro junto con un vector
 	struct record dataSuez;
 	vector<record> registroVec;
-	string txtFile = "suez.txt";
+
+	// preguntamos por el nombre del archivo de texto
+	string txtFile;
+	cout << "Como se llama el archivo de texto? (ej. canal.txt): ";
+	cin >> txtFile;
 
 	// cargamos los datos
 	loadData(dataSuez, registroVec, txtFile);
