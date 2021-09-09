@@ -39,14 +39,13 @@ int main()
 	sort(recordVec.begin(), recordVec.end(), compare);
 
 	// imprimimos el vector ordenado
-	printVector(recordVec);
+	//printVector(recordVec);
 
 	// le pedimos al usuario que Ubi quiere ver y los imprimimos 
 	string ubiUsuario;
 	cout << "Seleccionar un UBI: ";
 	cin >> ubiUsuario;
-	selectUbi(recordVec, ubiUsuario);
-	// selectUbiBin(recordVec, ubiUsuario);
+	selectUbiBin(recordVec, ubiUsuario);
 
 	return 0;
 }

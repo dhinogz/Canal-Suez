@@ -43,23 +43,9 @@ bool compare(record lhs, record rhs)
 }
 
 // le pide al usuario un ubi para luego desplegar todas las opciones
-void selectUbi(vector<record> vec, string ubiSelect)
-{
-	str_toupper(ubiSelect);
-	vector<record> eleccion;
-	for(int i = 0; i < vec.size(); i++)
-	{
-		if(vec[i].ubiStr == ubiSelect)
-		{
-			eleccion.push_back(vec[i]);
-		}
-	}
-	cout << "UBI seleccionado: " << ubiSelect << "\n";
-	printVector(eleccion);
-}
-
 void selectUbiBin(vector<record> vec, string ubiSelect)
 {
+	str_toupper(ubiSelect);
 	vector<string> ubiStr;
 	for (int i = 0; i < vec.size(); i++)
 	{
@@ -68,7 +54,7 @@ void selectUbiBin(vector<record> vec, string ubiSelect)
 	vector<string>::iterator low = lower_bound(ubiStr.begin(), ubiStr.end(), ubiSelect); 
 	vector<string>::iterator up = upper_bound(ubiStr.begin(), ubiStr.end(), ubiSelect); 
 	int pos = low - ubiStr.begin();
-	if(ubiStr[pos] == ubiSelect)
+	if(ubiStr[pos].substr(0, 3) == ubiSelect)
 	{
 		cout << "Se encontro \n";
 	}
@@ -77,6 +63,16 @@ void selectUbiBin(vector<record> vec, string ubiSelect)
 		cout << "No se encontro\n";
 	}
 
-	std::cout << "lower_bound at position " << (low - ubiStr.begin()) << '\n';
-	std::cout << "upper_bound at position " << (up - ubiStr.begin()) << '\n';
+	int lower = (low - ubiStr.begin());
+	int upper = (up - ubiStr.begin());
+
+	cout << "UBI seleccionado: " << ubiSelect << "\n";
+	for (int i = lower; i < upper; i++)
+	{
+		cout << vec[i].fecha << " ";
+		cout << vec[i].hora << " ";
+		cout << vec[i].entrada << " ";
+		cout << vec[i].ubi << "\n";
+	}
+	cout << "\n";
 }
