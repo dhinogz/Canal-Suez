@@ -11,6 +11,17 @@ void printVector(vector<record> vec)
 	cout << "\n";
 }
 
+// regresa un string con los primeros tres caracteres del ubi
+string ubiToStart(string ubi)
+{
+	string ubiStart;
+	for (int i = 0; i < 3; i++)
+	{
+		ubiStart += ubi[i];
+	}
+	return ubiStart;
+}
+
 // cargar datos de un archivo texto y guardar en un vector de la estructura record
 void loadData(record &dataLoaded, vector<record> &vec, string txtFile)
 {
@@ -22,17 +33,6 @@ void loadData(record &dataLoaded, vector<record> &vec, string txtFile)
 		vec.push_back(dataLoaded);
 	}
 	dataSuez.close();
-}
-
-// regresa un string con los primeros tres caracteres del ubi
-string ubiToStart(string ubi)
-{
-	string ubiStart;
-	for (int i = 0; i < 3; i++)
-	{
-		ubiStart += ubi[i];
-	}
-	return ubiStart;
 }
 
 // string a mayuscula se usa al pedir la entrada del ubi del usuario

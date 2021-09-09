@@ -5,14 +5,7 @@
 #include <fstream>
 #include <cctype>
 
-using std::cin;
-using std::cout;
-using std::vector;
-using std::string;
-using std::ifstream;
-using std::sort;
-using std::toupper;
-using std::transform;
+using namespace std;
 
 struct record
 {
