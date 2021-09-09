@@ -24,7 +24,7 @@ int main()
 {
 	// declaramos el struct de registro junto con un vector
 	struct record dataSuez;
-	vector<record> registroVec;
+	vector<record> recordVec;
 
 	// preguntamos por el nombre del archivo de texto
 	string txtFile;
@@ -32,17 +32,17 @@ int main()
 	cin >> txtFile;
 
 	// cargamos los datos
-	loadData(dataSuez, registroVec, txtFile);
+	loadData(dataSuez, recordVec, txtFile);
 
 	// ordenamos datos dependiendo de los primeros tres caracteres del UBI
 	// si es el mismo ubi, se ordena por fecha
-	sort(registroVec.begin(), registroVec.end(), compare);
+	sort(recordVec.begin(), recordVec.end(), compare);
 
 	// imprimimos el vector ordenado
-	printVector(registroVec);
+	printVector(recordVec);
 
 	// le pedimos al usuario que Ubi quiere ver y los imprimimos 
-	selectUbi(registroVec);
+	selectUbi(recordVec);
 
 	return 0;
 }
