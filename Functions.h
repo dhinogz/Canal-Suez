@@ -17,7 +17,6 @@ void loadData(record &dataLoaded, vector<record> &vec, string txtFile)
 	ifstream dataSuez(txtFile);
 	while(dataSuez >> dataLoaded.fecha >> dataLoaded.hora >> dataLoaded.entrada >> dataLoaded.ubi)
 	{
-		dataLoaded.ubiSub = dataLoaded.ubi.substr(0, 3);
 		vec.push_back(dataLoaded);
 	}
 	dataSuez.close();
@@ -35,7 +34,7 @@ void str_toupper(string &s)
 // condicion de ordenamiento
 bool compare(record lhs, record rhs)
 {
-    if (lhs.ubiSub == rhs.ubiSub){
+    if (lhs.ubi.substr(0, 3) == rhs.ubi.substr(0, 3)){
         return dateToInt(lhs.fecha) < dateToInt(rhs.fecha);
     }
     return (lhs.ubi.compare(rhs.ubi) < 0);
@@ -48,13 +47,13 @@ void selectUbi(vector<record> vec, string ubiSelect)
 	vector<string> ubiVec;
 	for (int i = 0; i < vec.size(); i++)
 	{
-		ubiVec.push_back(vec[i].ubiSub);
+		ubiVec.push_back(vec[i].ubi.substr(0, 3));
 	}
 	// O(log n) + 1 
 	vector<string>::iterator low = lower_bound(ubiVec.begin(), ubiVec.end(), ubiSelect); 
 	vector<string>::iterator up = upper_bound(ubiVec.begin(), ubiVec.end(), ubiSelect); 
 	int pos = low - ubiVec.begin();
-	if(ubiVec[pos].substr(0, 3) == ubiSelect)
+	if(ubiVec[pos] == ubiSelect)
 	{
 		cout << "Se encontro \n";
 	}

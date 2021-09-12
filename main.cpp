@@ -13,7 +13,6 @@ struct record
 	string hora;
 	char entrada;
 	string ubi;
-	string ubiSub;
 };
 
 #include "DateConverter.h"
