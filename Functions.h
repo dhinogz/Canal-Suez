@@ -42,7 +42,7 @@ bool compare(record lhs, record rhs)
 }
 
 // toma el ubi del usuario como parametro para luego desplegar todas las opciones
-void selectUbiBin(vector<record> vec, string ubiSelect)
+void selectUbi(vector<record> vec, string ubiSelect)
 {
 	str_toupper(ubiSelect);
 	vector<string> ubiVec;
