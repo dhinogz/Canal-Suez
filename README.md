@@ -12,8 +12,9 @@ Donde el punto de entrada puede ser M – Mar Mediterráneo y R – Mar Rojo.
 
 En equipos de tres personas, hacer una aplicación que:
 
-Solicite el nombre del archivo de entrada (Ej. canal.txt) y lo abra, almacenando los datos en un vector.
-Ordene la información por UBI + Fecha (primero por UBI, al haber empate ordenar por fecha).
-Solicite al usuario la serie a buscar (los primeros tres caracteres de el UBI).
-Despliegue todas las entradas al canal de los buques de esas series en forma ordenada UBI+Fecha.
+1. Solicite el nombre del archivo de entrada (Ej. canal.txt) y lo abra, almacenando los datos en un vector.
+2. Ordene la información por UBI + Fecha (primero por UBI, al haber empate ordenar por fecha).
+3. Solicite al usuario la serie a buscar (los primeros tres caracteres de el UBI).
+4. Despliegue todas las entradas al canal de los buques de esas series en forma ordenada UBI+Fecha.
+
 Realizar una investigación y reflexión en forma individual de la importancia y eficiencia del uso de los diferentes algoritmos de ordenamiento y búsqueda en una situación problema de esta naturaleza, generando un documento llamado "ReflexAct1.3.pdf"
