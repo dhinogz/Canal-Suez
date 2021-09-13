@@ -1,3 +1,14 @@
+/*
+Autores: 
+David Hinojosa Conzalez - A01720601
+Sebastián Joya Páez - A01025103
+Ricardo Jorge Rodríguez Treviño - A00831595
+Fecha: 12/09/2021
+Descripción: El presente código solicita primero un archivo en donde encontrarán los datos de un registro de barcos
+que navegan por el canal de Suez (entre el mar Mediterráneo y el mar Rojo) para posteriormente ordenarlos (en función de la fecha)
+y buscar los datos en base a los primeros tres caracteres del UBI. Esta última búsqueda será impresa posteriormente. 
+*/
+
 #include <iostream>
 #include <string>
 #include <vector>

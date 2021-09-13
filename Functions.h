@@ -11,7 +11,8 @@ void printVector(vector<record> vec, int start, int finish)
 	cout << "\n";
 }
 
-// cargar datos de un archivo texto y guardar en un vector de la estructura record O(n)
+// cargar datos de un archivo texto y guardar en un vector de la estructura record 
+// complejidad: O(n)
 void loadData(record &dataLoaded, vector<record> &vec, string txtFile)
 {
 	ifstream dataSuez(txtFile);
@@ -22,7 +23,8 @@ void loadData(record &dataLoaded, vector<record> &vec, string txtFile)
 	dataSuez.close();
 }
 
-// string a mayuscula se usa al pedir la entrada del ubi del usuario O(n)
+// string a mayuscula se usa al pedir la entrada del ubi del usuario 
+// complejidad: O(n)
 void str_toupper(string &s) 
 {
     transform(
