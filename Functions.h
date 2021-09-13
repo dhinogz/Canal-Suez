@@ -1,7 +1,7 @@
 // imrime el vector del tipo de dato record O(n)
-void printVector(vector<record> vec)
+void printVector(vector<record> vec, int start, int finish)
 {
-	for(int i = 0; i < vec.size(); i++)
+	for(int i = start; i < finish; i++)
 	{
 		cout << vec[i].fecha << " ";
 		cout << vec[i].hora << " ";
@@ -34,7 +34,8 @@ void str_toupper(string &s)
 // condicion de ordenamiento
 bool compare(record lhs, record rhs)
 {
-    if (lhs.ubi.substr(0, 3) == rhs.ubi.substr(0, 3)){
+    if (lhs.ubi == rhs.ubi)
+	{
         return dateToInt(lhs.fecha) < dateToInt(rhs.fecha);
     }
     return (lhs.ubi.compare(rhs.ubi) < 0);
@@ -66,12 +67,5 @@ void selectUbi(vector<record> vec, string ubiSelect)
 	int upper = (up - ubiVec.begin());
 
 	cout << "UBI seleccionado: " << ubiSelect << "\n";
-	for (int i = lower; i < upper; i++)
-	{
-		cout << vec[i].fecha << " ";
-		cout << vec[i].hora << " ";
-		cout << vec[i].entrada << " ";
-		cout << vec[i].ubi << "\n";
-	}
-	cout << "\n";
+	printVector(vec, lower, upper);
 }
